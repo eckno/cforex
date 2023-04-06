@@ -22,6 +22,14 @@ class IndexController extends BaseController{
     async resetAction(req, res){
         res.render('reset');
     }
+
+    async contactAction(req, res){
+        res.render('pages/contact');
+    }
+
+    async aboutAction(req, res){
+        res.render('pages/about');
+    }
 }
 
 module.exports = IndexController;
