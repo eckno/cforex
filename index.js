@@ -43,6 +43,7 @@ app.listen(PORT, () => {
 });
 
 //SET ROUTES RULES
-app.use("/", require("./routes/index"));
-app.use("/account/", require("./routes/account/index"));
-app.use("/admin/", require("./routes/admin/index"));
+app.use("/", require("./routes"));
+app.use("/secure/", require("./routes/secure"));
+app.use("/account/", require("./routes/account"));
+app.use("/admin/", require("./routes/admin"));
