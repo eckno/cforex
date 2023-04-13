@@ -9,11 +9,15 @@ class BaseService {
         this.serviceAccount = SERVICE_ACCOUNT_PATH;
 
         initializeApp({
-          credential: cert(serviceAccount)
+          credential: cert(this.serviceAccount)
         });
 
         this.db = getFirestore();
     };
+
+    async database(){
+      return this.db;
+    }
 };
 
 
