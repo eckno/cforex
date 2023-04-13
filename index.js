@@ -1,21 +1,16 @@
 const express = require("express");
 const redis = require("redis");
 const helmet = require("helmet");
-const admin = require("firebase-admin");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const path = require("path");
-const ejs = require('ejs');
 const expressSession = require('express-session');
-//const RedisStore = require('connect-redis')(expressSession);
-//const serviceAccount = require("./emailer-6f9eb-firebase-adminsdk-zwg5c-cc2535e7e8.json");
-
-//Initializers
-// admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount)
-//   });
+const redisStore = require("connect-redis").default
+const { REDIS_PORT, REDIS_HOST, SESSION_KEY } = require("./config");
 
 const app = express();
+//const RedisStore = connectRedis(expressSession);
+
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,14 +21,24 @@ app.use(express.static(path.join(__dirname, '/uploads')));
 app.set('view engine', 'ejs');
 dotenv.config();
 //
-// app.use(expressSession({
-//     store: new RedisStore({
-//     client: redis.get_connection()
-//     }),
-//     secret: process.env.SESSION_KEY,
-//     resave: false,
-//     saveUninitialized: false,
-// }));
+const redisClient = redis.createClient({
+        port: REDIS_PORT,
+        host: REDIS_HOST
+});
+
+app.use(expressSession({
+    store: new redisStore({
+    client: redisClient
+    }),
+    secret: SESSION_KEY,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 1000 * 60 * 30
+    }
+}));
 
 //
 const PORT = process.env.PORT || 5003;

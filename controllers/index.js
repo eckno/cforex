@@ -1,4 +1,6 @@
 const BaseController = require("./base");
+const BaseService = require('../services/base');
+const base = new BaseService();
 
 
 class IndexController extends BaseController{
@@ -12,6 +14,7 @@ class IndexController extends BaseController{
     }
 
     async loginAction(req, res){
+        console.log(base.database());
         res.render('login');
     }
 
