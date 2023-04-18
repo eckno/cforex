@@ -1,6 +1,8 @@
 const BaseController = require("./base");
-const BaseService = require('../services/base');
-const base = new BaseService();
+const IndexService = require('../services');
+const { empty, isObject, isString } = require('../lib/utils');
+
+const indexService = new IndexService();
 
 
 class IndexController extends BaseController{
@@ -14,12 +16,27 @@ class IndexController extends BaseController{
     }
 
     async loginAction(req, res){
-        console.log(base.database());
+        //console.log(base.database());
         res.render('login');
     }
 
     async registerAction(req, res){
-        res.render('register');
+            try{
+                if(req.method === "post"){
+                    const {data, success} = indexService.registrationService(req);
+
+                    if(empty(success) || success === false){
+                        return  IndexController.sendFailResponse(res, !empty(data) ? data : {errors: 'An error occurred processing your request. Please check your request and try again'})
+                    }
+                }
+                else{
+                    res.render('register');
+                }
+            }
+            catch(e){
+                console.log(e.message);
+                IndexController.sendFailResponse(res, {errors: 'Invalid Server Request'});
+            }
     }
 
     async resetAction(req, res){

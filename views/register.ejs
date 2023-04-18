@@ -1,9 +1,6 @@
 <!doctype html>
 <html lang="en">
-
-
-<!-- Mirrored from www.indonez.com/html-demo/Equity/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Apr 2023 23:00:43 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <!-- Meta tags -->
     <meta charset="utf-8">
@@ -13,24 +10,46 @@
     <meta name="author" content="Indonez">
     <meta name="theme-color" content="#FCB42D" />
     <!-- critical preload -->
-    <link rel="preload" href="../js/vendors/uikit.min.js" as="script">
-    <link rel="preload" href="../css/style.css" as="style">
+    <link rel="preload" href="/js/vendors/uikit.min.js" as="script">
+    <link rel="preload" href="/css/style.css" as="style">
     <!-- icon preload -->
-    <link rel="preload" href="../fonts/fa-brands-400.woff2" as="font" type="../font/woff2" crossorigin>
-    <link rel="preload" href="../fonts/fa-solid-900.woff2" as="font" type="../font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="../font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="../font/woff2" crossorigin>
     <!-- font preload -->
-    <link rel="preload" href="../fonts/archivo-v9-latin-regular.woff2" as="font" type="../font/woff2" crossorigin>
-    <link rel="preload" href="../fonts/archivo-v9-latin-300.woff2" as="font" type="../font/woff2" crossorigin>
-    <link rel="preload" href="../fonts/archivo-v9-latin-700.woff2" as="font" type="../font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/archivo-v9-latin-regular.woff2" as="font" type="../font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/archivo-v9-latin-300.woff2" as="font" type="../font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/archivo-v9-latin-700.woff2" as="font" type="../font/woff2" crossorigin>
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
     <!-- Touch icon -->
-    <link rel="apple-touch-icon-precomposed" href="../img/apple-touch-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/waitMe.min.css">
+    <link rel="stylesheet" href="/css/modal-plugin.css">
+    <style>
+        .error_s strong {
+            display: inline-block;
+            margin: 0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            background-color: #eaeaea;
+            color: #b9316f;
+            font-weight: 600;
+        }
+
+        .success_ strong {
+            display: inline-block;
+            margin: 0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            background-color: #eaeaea;
+            color: #0cb73c;
+            font-weight: 600;
+        }
+    </style>
     <title>Sign Up - MasterTraders</title>
 </head>
-
 <body>
     <!-- page loader begin -->
     <div class="in-page-loader">
@@ -39,6 +58,7 @@
         <div></div>
     </div>
     <!-- page loader end -->
+
     <main>
     <!-- section content begin -->
     <div class="uk-section uk-section-secondary uk-light uk-padding-remove-vertical">
@@ -56,26 +76,26 @@
                                 </a>
                                 <p class="uk-text-lead uk-margin-small-top uk-margin-medium-bottom">Log into your account</p>
                                 <!-- login form begin -->
-                                <form class="uk-grid uk-form">
+                                <form method="POST" id="registration-form" action="/account/register" class="uk-grid uk-form">
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-user fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" id="fname" value="" type="text" placeholder="First Name">
+                                        <input class="uk-input uk-border-rounded" name="fname" id="fname" value="" type="text" placeholder="First Name">
                                     </div>
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-user fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" id="lname" value="" type="text" placeholder="Last Name">
+                                        <input class="uk-input uk-border-rounded" name="lname" id="lname" value="" type="text" placeholder="Last Name">
                                     </div>
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-envelope fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" id="email" value="" type="email" placeholder="Email">
+                                        <input class="uk-input uk-border-rounded" id="email" name="email" value="" type="email" placeholder="Email">
                                     </div>
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-lock fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" id="password" value="" type="text" placeholder="Password">
+                                        <input class="uk-input uk-border-rounded" name="password" id="password" value="" type="text" placeholder="Password">
                                     </div>
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-lock fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" id="cpassword" value="" type="text" placeholder="Confirm Password">
+                                        <input class="uk-input uk-border-rounded" name="cpassword" id="cpassword" value="" type="text" placeholder="Confirm Password">
                                     </div>
                                     
                                    
@@ -95,11 +115,16 @@
     <!-- section content end -->
     </main>
     <!-- javascript -->
-    <script src="../js/vendors/uikit.min.js"></script>
-    <script src="../js/utilities.min.js"></script>
-    <script src="../js/config-theme.js"></script>
+    <script src="/js/vendors/uikit.min.js"></script>
+    <script src="/js/utilities.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/waitMe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>    
+    <script src="/js/common.js"></script>
+
+    <script src="/app/base.js"></script>
+    <script src="/app/index.js"></script>
 </body>
 
 
-<!-- Mirrored from www.indonez.com/html-demo/Equity/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Apr 2023 23:00:43 GMT -->
 </html>

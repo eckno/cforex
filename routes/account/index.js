@@ -11,6 +11,9 @@ router.get(ROUTE_LOGIN, async (req, res) => {
 router.get(ROUTE_REGISTRATION, async (req, res) => {
     return indexController.registerAction(req, res);
 });
+router.post(ROUTE_REGISTRATION, async (req, res) => {
+    return indexController.registerAction(req, res);
+});
 
 router.get(ROUTE_FORGOT_PASSWORD, async (req, res) => {
     return indexController.resetAction(req, res);
