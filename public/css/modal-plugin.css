@@ -1,0 +1,119 @@
+
+/* Unverified email popup styles */
+body .bootbox.modal.unverified_email {background-color: #020A12E2; padding-left: 30px; padding-right: 30px; overflow-y:auto;}
+body .bootbox.modal.unverified_email .modal-dialog {margin: 0 auto; margin-top: 60px; margin-bottom: 40px; max-width: 728px;}
+body .bootbox.modal.unverified_email .modal-dialog .modal-content {border-radius: 10px; border: 0px;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body {padding: 18px 16px;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body button.bootbox-close-button, 
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body button.bootbox-close-button:focus {outline: none; border: 0px;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body button.bootbox-close-button img {width: 29px; height: auto; opacity: 1;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container {padding-top: 74px; padding-bottom: 69px; }
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item {width: 100%; max-width: 578px; margin: 0 auto; color: #161616; font-size: 20px; line-height: 30px; letter-spacing: -0.2px; font-family: 'EndzoneSans-Light'; text-align: center;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item a,
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item a:visited {color: #CE0F69; text-decoration: underline;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item a:focus {text-decoration: none;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .internal_message_container .modal_footer {text-align: center; padding: 48px 10px 0px;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .internal_message_container .modal_footer .button {min-width: 107px; outline: none; border: 0px; padding: 14px 29px 9px; background-color: #CE0F69; border-radius: 25px; font-size: 20px; line-height: 20px; letter-spacing: 0px; font-family: 'EndzoneSans-Medium', sans-serif; text-align: center; color: #FFFFFF;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body button.bootbox-close-button { position: relative; color: #EB1932; opacity: 1;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item .heading {color: #3C1053; font-size: 32px; line-height: 32px; letter-spacing: 0px; font-family: 'EndzoneSans-Medium', sans-serif; text-align: center; margin: 0px; padding: 0px 0px 22px;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item .heading.error {color: #CE0F69; }
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item .form_container input {border: 1px solid #161616; height: 51px;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item .form_container .label {font-size: 24px; line-height: 30px; letter-spacing: 0px; font-weight: 700;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item .access_code_sent_text .inbox_tex {font-weight: 700; font-size: 22px; line-height: 30px; letter-spacing: -0.22px;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item .input_field_container.error .label {color: #F44336;}
+
+
+/* static pops | login | signup | reset [forgot] password */
+body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-header {padding: 0px; position: relative; border: 0px;}
+body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-header img {width: 100%; max-width: 100%; height: auto;}
+body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-header button.bootbox-close-button {position: absolute; float: none; margin: 0px; padding: 0px; top: 18px; right: 18px; opacity: 1;}
+body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-header button.bootbox-close-button, 
+body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-header button.bootbox-close-button:focus {outline: none; border: 0px;}
+body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-header button.bootbox-close-button img {width: 29px; height: auto; opacity: 1;}
+body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body {padding-top: 44px; padding-bottom: 57px; }
+body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container {padding: 0px;}
+body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item {max-width: 581px; font-family: 'EndzoneSans-Medium', sans-serif; color: #3C1053; font-size: 18px; line-height: 23px; letter-spacing: 0px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .heading_text {text-align: center; font-size: 28px; line-height: 34px; letter-spacing: 0px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer {padding-top: 21px;}
+        body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container {padding-top: 23px;}
+            body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container input[type="text"],
+            body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container input[type="password"] { width: 100%; border: 1px solid #3C1053; border-radius: 25px; background-color: #FFFFFF; height: 50px; padding: 10px 30px;}
+            body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container input.error {border: 1px solid #CE0F69;}
+            body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container .label { font-size: 20px; line-height: 24px; letter-spacing: 0px; margin-bottom: 7px;}
+            body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container .field_error {font-size: 18px; line-height: 23px; letter-spacing: 0px; color: #CE0F69; text-align: left; width: 100%; padding-top: 18px;}
+        body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .forgot_password_link {padding-top: 18px; text-align: left;}
+            body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .forgot_password_link a {font-size: 18px; line-height: 23px; letter-spacing: 0px; text-decoration: underline;}
+            body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .forgot_password_link a,
+            body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .forgot_password_link a:focus { color: #3C1053;}
+        body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .button_container {padding-top: 29px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .sso_login_options_container {padding-top: 41px;}
+        body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .sso_login_options_container .text {padding-bottom: 17px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .signup_option_divider {border-bottom: 2px solid #3C1053; width: 100%; max-width: 500px; margin: 40px auto 43px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .signup_option_container {font-size: 19px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .signup_option_container .text {padding-bottom: 18px;}
+
+
+/* IPAD | LAPTOPS | IMAPS etc */
+@media (min-width: 768px) {
+    /* unverified email popup style */
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container {padding-top: 77px; padding-bottom: 33px; }
+    body.confirmation_page .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item {max-width: 500px; font-weight: 400; font-size: 24px; line-height: 32px; letter-spacing: 0px;}
+}
+
+@media (max-width: 1600px) and (min-width:1025px) {
+    /* unverified email popup styles */
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container {padding-top: 60px;}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* unverified email popup styles */
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container {padding-top: 46px;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item .heading { font-size: 26px; line-height: 32px;}
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item .form_container .label {font-size: 18px; line-height: 20px;}
+}
+
+
+/* MOBILE Only */
+@media (max-width: 767px) {
+
+     /* unverified email styles */
+     body .bootbox.modal.unverified_email .modal-dialog {margin-top: 80px;}
+     body .bootbox.modal.unverified_email .modal-dialog .modal-content {border-radius: 10px;}
+     body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body button.bootbox-close-button {top: -8px; right: -8px;}
+     body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body button.bootbox-close-button img {width: 23px;}
+     body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container {padding-top: 39px; padding-bottom: 22px;}
+     body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item {font-size: 16px; line-height: 30px; letter-spacing: -0.16px; color: #3C1053;}
+     body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container .message_item .heading { font-size: 24px; line-height: 24px; padding-bottom: 23px;}
+     body .bootbox.modal.unverified_email .modal-dialog .modal-content .internal_message_container .modal_footer {padding-top: 25px;}
+     body .bootbox.modal.unverified_email .modal-dialog .modal-content .internal_message_container .modal_footer .button {min-width: 78px; font-size: 14px; line-height: 14px; letter-spacing: 0px; padding-top: 14px; padding-bottom: 10px;}
+
+    /* static pops */
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-header button.bootbox-close-button {top: 12px; right: 12px; line-height: 0px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-header button.bootbox-close-button img {width: 19px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body {padding-top: 33px; padding-bottom: 47px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item {font-size: 16px; line-height: 19px; letter-spacing: 0px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .heading_text {font-size: 24px; line-height: 24px; letter-spacing: 0px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer {padding-top: 14px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container {padding-top: 18px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container .label {font-size: 16px; line-height: 19px; letter-spacing: 0px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container input[type="text"],
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container input[type="password"] {height: 40px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .input_field_container .field_error {padding-top: 10px; font-size: 12px; line-height: 14px; letter-spacing: 0px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .forgot_password_link {padding-top: 9px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .forgot_password_link a {font-size: 12px; line-height: 14px; letter-spacing: 0px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .formContainer .button_container {padding-top: 31px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .sso_login_options_container {padding-top: 34px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .sso_login_options_container .text {padding-bottom: 19px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .signup_option_divider {margin-top: 32px; margin-bottom: 34px; border-width: 1px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .signup_option_container {font-size: 16px; line-height: 19px;}
+    body .bootbox.modal.unverified_email._app_modal .modal-dialog .modal-content .modal-body .internal_message_container .message_item .signup_option_container .text {padding-bottom: 19px;}
+
+} /* mobile only */
+
+@media (max-width:500px) {
+    body .bootbox.modal.unverified_email {padding-left: 16px; padding-right: 16px;}
+}
+
+@media (max-width: 350px) {
+    body .bootbox.modal.unverified_email .modal-dialog .modal-content .modal-body .internal_message_container {padding-top: 40px; padding-bottom: 35px;}
+}

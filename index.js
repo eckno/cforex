@@ -10,8 +10,8 @@ const { REDIS_PORT, REDIS_HOST, SESSION_KEY } = require("./config");
 
 const app = express();
 //const RedisStore = connectRedis(expressSession);
-
-app.use(helmet());
+app.use(helmet({contentSecurityPolicy: false,}));
+//app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, '/views'));
