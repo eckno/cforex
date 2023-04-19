@@ -45,7 +45,7 @@ function display_error(errors, redirect_url = ""){
 function display_success(msg, redirect_url = ""){
     Swal.fire({
         title: '<div class="success_"><strong>SUCCESS <i class="fa fa-check"></i></strong></div>',
-        html: msg,
+        html: `<div class='error_block'>${msg}</div>`,
         showCloseButton: false,
         showCancelButton: false,
         focusConfirm: false,

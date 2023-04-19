@@ -1,6 +1,8 @@
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
 const { SERVICE_ACCOUNT_PATH } = require("../config");
+const { empty, filter_var, isObject, humanize} = require("../lib/utils");
+const _ = require("lodash");
 
 class BaseService {
     ///
@@ -27,6 +29,27 @@ class BaseService {
 			_.forEach(data, (d, key) => {
 				data[key] = this.recursivelySanitize(d);
 			});
+		}
+		return data;
+	}
+
+	/**
+	 *
+	 * @param {*} data
+	 * @returns
+	 */
+	static recursivelySanitize(data) {
+		if (isObject(data)) {
+			_.forEach(data, (d, key) => {
+				if (_.isString(d) && _.includes(d, "%") !== false) {
+					data[key] = decodeURI(d);
+				}
+				if (isObject(d)) {
+					data[key] = this.recursivelySanitize(d);
+				}
+			});
+		} else if (_.isString(data)) {
+			data = data.trim();
 		}
 		return data;
 	}

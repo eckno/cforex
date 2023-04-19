@@ -28,25 +28,10 @@
     <link rel="stylesheet" href="/css/waitMe.min.css">
     <link rel="stylesheet" href="/css/modal-plugin.css">
     <style>
-        .error_s strong {
-            display: inline-block;
-            margin: 0;
-            padding: 2px 5px;
-            border-radius: 3px;
-            background-color: #eaeaea;
-            color: #b9316f;
-            font-weight: 600;
-        }
-
-        .success_ strong {
-            display: inline-block;
-            margin: 0;
-            padding: 2px 5px;
-            border-radius: 3px;
-            background-color: #eaeaea;
-            color: #0cb73c;
-            font-weight: 600;
-        }
+        .error_s strong {display: inline-block; margin: 0; padding: 0px 0px; border-radius: 3px; background-color: #eaeaea; color: #b9316f; font-weight: 600;}
+        .success_ strong {display: inline-block; margin: 0; padding: 2px 5px; border-radius: 3px; background-color: #eaeaea; color: #0cb73c; font-weight: 600;}
+        .error_list {letter-spacing: normal; line-height: 1.5;}
+        .error_list:first-child{padding-top: 10px;}
     </style>
     <title>Sign Up - MasterTraders</title>
 </head>
@@ -79,11 +64,11 @@
                                 <form method="POST" id="registration-form" action="/account/register" class="uk-grid uk-form">
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-user fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" name="fname" id="fname" value="" type="text" placeholder="First Name">
+                                        <input class="uk-input uk-border-rounded" name="firstname" id="firstname" value="" type="text" placeholder="First Name">
                                     </div>
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-user fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" name="lname" id="lname" value="" type="text" placeholder="Last Name">
+                                        <input class="uk-input uk-border-rounded" name="lastname" id="lastname" value="" type="text" placeholder="Last Name">
                                     </div>
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-envelope fa-sm"></span>
@@ -95,7 +80,7 @@
                                     </div>
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-lock fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" name="cpassword" id="cpassword" value="" type="text" placeholder="Confirm Password">
+                                        <input class="uk-input uk-border-rounded" name="confirm_password" id="confirm_password" value="" type="text" placeholder="Confirm Password">
                                     </div>
                                     
                                    
