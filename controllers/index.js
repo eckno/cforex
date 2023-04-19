@@ -35,7 +35,7 @@ class IndexController extends BaseController{
                 }
             }
             catch(e){
-                console.log('hi', e.message);
+                console.log(e.message);
                 IndexController.sendFailResponse(res, {errors: 'Invalid Server Request'});
             }
     }
