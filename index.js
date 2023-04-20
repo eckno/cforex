@@ -1,15 +1,16 @@
+require('dotenv').config();
+const { REDIS_PORT, REDIS_URL, SESSION_KEY } = require("./config");
 const express = require("express");
-const redis = require("redis");
 const helmet = require("helmet");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const path = require("path");
-const expressSession = require('express-session');
-const redisStore = require("connect-redis").default
-const { REDIS_PORT, REDIS_HOST, SESSION_KEY } = require("./config");
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+const Redis = require('ioredis');
+const redis = new Redis(REDIS_URL);
 
 const app = express();
-//const RedisStore = connectRedis(expressSession);
 app.use(helmet({contentSecurityPolicy: false,}));
 //app.use(helmet());
 app.use(bodyParser.json());
@@ -21,28 +22,16 @@ app.use(express.static(path.join(__dirname, '/uploads')));
 app.set('view engine', 'ejs');
 dotenv.config();
 //
-const redisClient = redis.createClient({
-        port: REDIS_PORT,
-        host: REDIS_HOST
-});
-
-app.use(expressSession({
-    store: new redisStore({
-    client: redisClient
-    }),
-    secret: SESSION_KEY,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        secure: false,
-        httpOnly: true,
-        maxAge: 1000 * 60 * 30
-    }
+app.use(session({
+	store: new RedisStore({ client: redis }),
+	secret: SESSION_KEY,
+	resave: false,
+	saveUninitialized: false
 }));
 
 //
 const PORT = process.env.PORT || 5003;
-//
+
 app.listen(PORT, () => {
         console.log("app running on port " + PORT);
 });

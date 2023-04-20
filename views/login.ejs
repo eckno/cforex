@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-
-<!-- Mirrored from www.indonez.com/html-demo/Equity/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Apr 2023 23:00:43 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <!-- Meta tags -->
     <meta charset="utf-8">
@@ -31,9 +29,10 @@
     <link rel="stylesheet" href="/css/waitMe.min.css">
     <link rel="stylesheet" href="/css/modal-plugin.css">
     <style>
-        .error_s strong {display: inline-block; margin: 0; padding: 2px 5px; border-radius: 3px; background-color: #eaeaea; color: #b9316f; font-weight: 600;}
+        .error_s strong {display: inline-block; margin: 0; padding: 0px 0px; border-radius: 3px; background-color: #eaeaea; color: #b9316f; font-weight: 600;}
         .success_ strong {display: inline-block; margin: 0; padding: 2px 5px; border-radius: 3px; background-color: #eaeaea; color: #0cb73c; font-weight: 600;}
-        .error_list {letter-spacing: normal; line-height: 0.5;}
+        .error_list {letter-spacing: normal; line-height: 1.5;}
+        .error_list:first-child{padding-top: 10px;}
     </style>
     <title>Sign in - MasterTraders</title>
 </head>
@@ -63,17 +62,14 @@
                                 </a>
                                 <p class="uk-text-lead uk-margin-small-top uk-margin-medium-bottom">Log into your account</p>
                                 <!-- login form begin -->
-                                <form class="uk-grid uk-form">
+                                <form id="login-form" action="/account" method="POST" class="uk-grid uk-form">
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-user fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" id="username" value="" type="text" placeholder="Username">
+                                        <input class="uk-input uk-border-rounded" id="email" name="email" value="" type="text" placeholder="Account email">
                                     </div>
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-lock fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" id="password" value="" type="email" placeholder="Password">
-                                    </div>
-                                    <div class="uk-margin-small uk-width-auto uk-text-small">
-                                        <label><input class="uk-checkbox uk-border-rounded" type="checkbox"> Remember me</label>
+                                        <input class="uk-input uk-border-rounded" id="password" name="password" value="" type="password" placeholder="Account Password">
                                     </div>
                                     <div class="uk-margin-small uk-width-expand uk-text-small">
                                         <label class="uk-align-right"><a class="uk-link-reset" href="/account/reset">Forgot password?</a></label>
@@ -96,7 +92,6 @@
     <!-- javascript -->
     <script src="js/vendors/uikit.min.js"></script>
     <script src="js/utilities.min.js"></script>
-    <script src="js/config-theme.js"></script>
     <script src="/js/jquery.js"></script>
     <script src="/js/waitMe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -106,6 +101,4 @@
     <script src="/app/index.js"></script>
 </body>
 
-
-<!-- Mirrored from www.indonez.com/html-demo/Equity/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Apr 2023 23:00:43 GMT -->
 </html>

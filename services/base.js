@@ -196,6 +196,13 @@ class BaseService {
 		return errors;
 	}
 
+	static setUserSession(req, session_data) {
+		if (req && req.session && session_data) {
+			req.session.user = session_data;
+			req.session.save();
+		}
+	}
+
 };
 
 

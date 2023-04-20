@@ -7,6 +7,9 @@ const indexController = new IndexController();
 router.get(ROUTE_LOGIN, async (req, res) => {
     return indexController.loginAction(req, res);
 });
+router.post(ROUTE_LOGIN, async (req, res) => {
+    return indexController.loginAction(req, res);
+});
 
 router.get(ROUTE_REGISTRATION, async (req, res) => {
     return indexController.registerAction(req, res);
