@@ -52,7 +52,55 @@ class IndexService extends BaseService {
 		}
     }
 
-	async loginService(req) {}
+	async loginService(req) {
+		try{
+			let errors = {}, response = {};
+			if(!empty(req) && !empty(req.body)){
+				const post = IndexService.sanitizeRequestData(req.body);
+				const required_fields = ['email', 'password'];
+
+				errors = this.validateFields(post, required_fields, [], [], [], [],[]);
+				if(!empty(errors)){
+					return IndexService.sendFailedResponse(errors);
+				}
+				let user_response = await this.db.collection('users').where('email', '==', post['email']).get();
+				if(user_response.empty){
+					errors['user'] = "Incorrect email or password. Please confirm details";
+				}else if(!user_response.empty){
+					let session_data = "";
+					user_response.forEach(user => {
+						if(user.data().password !== post['password']){
+							errors['user'] = "Incorrect email or password. Please confirm details";
+						}
+						else{
+							session_data = user.data().unique_id;
+						}
+					});
+					if(!empty(session_data)){
+						IndexService.setUserSession(req, session_data);
+						response['redirect_url'] ="/secure";
+						response['msg'] ="Account Authenticated";
+						return IndexService.sendSuccessResponse(response);
+					}
+					else{
+						errors['user'] = "Incorrect email or password. Please confirm details";
+					}
+				}
+				else{
+					errors['user'] = "An error occurred. Please check your request and try again";
+				}
+				if(!empty(errors)){
+					return IndexService.sendFailedResponse(errors);
+				}
+			}else{
+				return IndexService.sendFailedResponse('An error occurred. Please check your request and try again');
+			}
+		}
+		catch(e){
+			console.log("sv: ", e.message);
+			return IndexService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
 
 }
 

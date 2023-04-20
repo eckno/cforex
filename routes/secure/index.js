@@ -5,6 +5,7 @@ const {ROUTE_INDEX, ROUTE_PROFILE, ROUTE_PROFILE_EDIT, ROUTE_DEPOSIT, ROUTE_WITH
 const dashboardController = new DashboardController();
 
 router.get(ROUTE_INDEX, async (req, res) => {
+    console.log(req.session.user);
     return dashboardController.indexAction(req, res);
 });
 

@@ -16,8 +16,22 @@ class IndexController extends BaseController{
     }
 
     async loginAction(req, res){
-        //console.log(base.database());
-        res.render('login');
+        try{
+            if(req.method === "POST"){
+                const {data, success} = await indexService.loginService(req);
+                    if(empty(success) || success === false){
+                        return  IndexController.sendFailResponse(res, !empty(data) ? data : {errors: 'An error occurred processing your request. Please check your request and try again'});
+                    }
+                return IndexController.sendSuccessResponse(res, data);
+            }
+            else{
+                res.render('login');
+            }
+        }
+        catch(e){
+            console.log("cl: ", e.message);
+            IndexController.sendFailResponse(res, {errors: 'Invalid Server Request'});
+        }
     }
 
     async registerAction(req, res){
