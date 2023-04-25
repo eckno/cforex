@@ -54,10 +54,15 @@ class IndexService extends BaseService {
 
 	async loginService(req) {
 		try{
-			let errors = {}, response = {};
+			let errors = {}, response = {}, required_fields;
 			if(!empty(req) && !empty(req.body)){
 				const post = IndexService.sanitizeRequestData(req.body);
-				const required_fields = ['email', 'password'];
+				if(post['reset_password'] === true){
+					required_fields = ['email'];
+				}
+				else{
+					required_fields = ['email', 'password'];
+				}
 
 				errors = this.validateFields(post, required_fields, [], [], [], [],[]);
 				if(!empty(errors)){
@@ -67,17 +72,26 @@ class IndexService extends BaseService {
 				if(user_response.empty){
 					errors['user'] = "Incorrect email or password. Please confirm details";
 				}else if(!user_response.empty){
-					let session_data = "";
+					let session_data = {};
 					user_response.forEach(user => {
 						if(user.data().password !== post['password']){
 							errors['user'] = "Incorrect email or password. Please confirm details";
 						}
 						else{
-							session_data = user.data().unique_id;
+							session_data['uid'] = user.data().unique_id;
+							session_data['firstname'] = user.data().firstname;
+							session_data['lastname'] = user.data().lastname;
 						}
 					});
+
+					if(post['reset_password'] === true){
+						//SEND USER PASSWORD TO USER EMAIL ADDRESS
+						response['msg'] ="All good ! We have sent your password to your mail box";
+						return IndexService.sendSuccessResponse(response);
+					}
+
 					if(!empty(session_data)){
-						IndexService.setUserSession(req, session_data);
+						IndexService.setUserSession(req, {...session_data});
 						response['redirect_url'] ="/secure";
 						response['msg'] ="Account Authenticated";
 						return IndexService.sendSuccessResponse(response);

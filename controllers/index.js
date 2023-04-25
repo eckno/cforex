@@ -55,7 +55,24 @@ class IndexController extends BaseController{
     }
 
     async resetAction(req, res){
-        res.render('reset');
+        try{
+                if(req.method === "POST"){
+                    req.body.reset_password = (!empty(req) && !empty(req.body)) ? true : "";
+                    const {data, success} = await indexService.loginService(req);
+                   
+                    if(empty(success) || success === false){
+                        return  IndexController.sendFailResponse(res, !empty(data) ? data : {errors: 'An error occurred processing your request. Please check your request and try again'})
+                    }
+                    return IndexController.sendSuccessResponse(res, data);
+                }
+                else{
+                    res.render('reset');
+                }
+            }
+            catch(e){
+                console.log(e.message);
+                IndexController.sendFailResponse(res, {errors: 'Invalid Server Request'});
+            }
     }
 
     async contactAction(req, res){

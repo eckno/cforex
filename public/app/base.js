@@ -15,12 +15,11 @@ function process_form(form_id, btn_id = ""){
             dataType: "JSON",
             data: form_data,
             success: function (res) {
-                console.log(res);
                 $(`#${form_id}`).trigger('reset');
                 let redirect_url = "", msg = "";
                 hide_spinner();
-                if (typeof res.data !== "undefined" && typeof res.data.redirect_url === "string") {
-                    redirect_url = (res.data.redirect_url) ? res.data.redirect_url : "";
+                if (typeof res.data !== "undefined") {
+                    redirect_url = (res.data.redirect_url  && typeof res.data.redirect_url === "string") ? res.data.redirect_url : "";
                     msg = res.data.msg ? res.data.msg : "";
                 }
 
