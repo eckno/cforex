@@ -1,0 +1,198 @@
+<%- include('./inc/header') %>
+
+    <%- include('./inc/sidebar') %>
+
+        <!-- main content-->
+<div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0">Deposit</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Deposit</a></li>
+                                        <li class="breadcrumb-item active">Methods</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-lg-5">
+                            <div class="text-center mb-5">
+                                <h4 class="fw-semibold fs-22">Deposit & Methods</h4>
+                                <p class="text-muted mb-4 fs-15">Simple pricing. No hidden fees. Advanced features for you business.</p>
+                            </div>
+                        </div>
+                        <!--end col-->
+                    </div>
+                    <!--end row-->
+
+                    <div class="row justify-content-center">
+                        <div class="col-xxl-8">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <ul class="nav nav-pills plan-nav nav-info mb-4 p-2 d-inline-flex bg-light rounded" id="pills-tab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link fw-semibold active" id="month-tab" data-bs-toggle="pill" data-bs-target="#month" type="button" role="tab" aria-selected="true">How to make a deposit</button>
+                                                </li>
+                                            </ul>
+                                            <ul class="list-unstyled vstack gap-4 text-muted mb-0" id="plan-list">
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 text-success me-2">
+                                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <b>8</b> Projects
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 text-success me-2">
+                                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <b>449</b> Customers
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 text-success me-2">
+                                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            Scalable Bandwidth
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 text-success me-2">
+                                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <b>7</b> FTP Login
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 text-success me-2">
+                                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <b>24/7</b> Support
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 text-danger me-2">
+                                                            <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <b>Unlimited</b> Storage
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 text-danger me-2">
+                                                            <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            Domain
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-lg-6">
+                                    <div class="vstack gap-3">
+                                        <div class="form-check card-radio">
+                                            <input id="plans01" name="method" type="radio" value="startup" class="form-check-input plan-radio" checked="">
+                                            <label class="form-check-label" for="plans01">
+                                                <span class="d-flex align-items-center">
+                                                    <span class="fw-semibold d-block flex-grow-1 fs-15 text-uppercase">P2P</span>
+                                                    <span class="month fw-semibold flex-shrink-0 fs-24 text-uppercase"> <small class="fs-12 text-muted">(Recommended)</small></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check card-radio">
+                                            <input id="plans02" name="method" type="radio" value="professional" class="form-check-input plan-radio">
+                                            <label class="form-check-label" for="plans02">
+                                                <span class="d-flex align-items-center">
+                                                    <span class="flex-grow-1">
+                                                        <span class="fw-semibold d-block fs-14 text-uppercase mb-2">CRYPTO</span>
+                                                        <span class="badge text-bg-danger">15% save</span>
+                                                    </span>
+                                                </span>
+
+                                            </label>
+                                        </div>
+                                        <div class="form-check card-radio">
+                                            <input id="plans03" disabled type="radio" value="enterprise" class="form-check-input plan-radio">
+                                            <label class="form-check-label" for="plans03">
+                                                <span class="d-flex align-items-center">
+                                                    <span class="flex-grow-1">
+                                                        <span class="fw-semibold d-block fs-14 text-uppercase mb-2">BANK CARD</span>
+                                                    </span>
+                                                    <span class="month fw-semibold flex-shrink-0 fs-24 text-uppercase"> <small class="fs-12 text-danger">UNAVAILABLE</small></span>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <a href="#!" class="btn btn-primary w-100">Continue</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+                        </div>
+                        <!--end-col-->
+                    </div>
+
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Hybrix.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by Themesbrand
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+
+
+        <%- include('./inc/footer') %>

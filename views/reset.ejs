@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-
-<!-- Mirrored from www.indonez.com/html-demo/Equity/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Apr 2023 23:00:43 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <!-- Meta tags -->
     <meta charset="utf-8">
@@ -28,6 +26,14 @@
     <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
     <!-- Touch icon -->
     <link rel="apple-touch-icon-precomposed" href="../img/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/waitMe.min.css">
+    <link rel="stylesheet" href="/css/modal-plugin.css">
+    <style>
+        .error_s strong {display: inline-block; margin: 0; padding: 0px 0px; border-radius: 3px; background-color: #eaeaea; color: #b9316f; font-weight: 600;}
+        .success_ strong {display: inline-block; margin: 0; padding: 2px 5px; border-radius: 3px; background-color: #eaeaea; color: #0cb73c; font-weight: 600;}
+        .error_list {letter-spacing: normal; line-height: 1.5;}
+        .error_list:first-child{padding-top: 10px;}
+    </style>
     <title>Reset Password - MasterTraders</title>
 </head>
 
@@ -56,20 +62,18 @@
                                 </a>
                                 <p class="uk-text-lead uk-margin-small-top uk-margin-medium-bottom">Reset your password</p>
                                 <!-- login form begin -->
-                                <form class="uk-grid uk-form">
+                                <form action="/account/reset" id="reset-login-form" class="uk-grid uk-form">
                                     <div class="uk-margin-small uk-width-1-1 uk-inline">
                                         <span class="uk-form-icon uk-form-icon-flip fas fa-envelope fa-sm"></span>
-                                        <input class="uk-input uk-border-rounded" id="npassword" value="" type="email" placeholder="Email">
+                                        <input class="uk-input uk-border-rounded" id="email" name="email" value="" type="text" placeholder="Your login email">
                                     </div>
                                     <div class="uk-margin-small uk-width-1-1">
                                         <button class="uk-button uk-width-1-1 uk-button-primary uk-border-rounded uk-float-left" type="submit" name="submit">Submit</button>
                                     </div>
                                    
                                   
-                                   
                                 </form>
                                 <!-- login form end -->
-                               
                             </div>
                         </div>
                     </div>                
@@ -82,9 +86,13 @@
     <!-- javascript -->
     <script src="../js/vendors/uikit.min.js"></script>
     <script src="../js/utilities.min.js"></script>
-    <script src="../js/config-theme.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/waitMe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/common.js"></script>
+    
+    <script src="/app/base.js"></script>
+    <script src="/app/index.js"></script>
 </body>
 
-
-<!-- Mirrored from www.indonez.com/html-demo/Equity/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Apr 2023 23:00:43 GMT -->
 </html>
