@@ -25,6 +25,116 @@ class SecureService extends BaseService {
 		}
     }
 
+	async processDeposit(req){
+		try{
+			if(!empty(req) && !empty(req.body)){
+				const post = BaseService.sanitizeRequestData(req.body);
+				
+				if(!empty(post)){
+					let errors = {}, response = {};
+					const required_fields = ['amount'];
+					const number_fields = [''];
+					errors = this.validateFields(post, required_fields, [], [],number_fields, [], []);
+					if(!empty(errors)){
+						return BaseService.sendFailedResponse(errors);
+					}
+					const redirect_url = `/secure/deposit_type?amount=${post['amount']}`;
+					response['redirect_url'] = redirect_url;
+					response['msg'] = "Kindly proceed on deposit methods & procedures";
+					//
+					return BaseService.sendSuccessResponse(response);
+				}
+				else{
+					return BaseService.sendFailedResponse('Error! Invalid Request');
+				}
+			}
+		}
+		catch (e) {
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
+
+	async submitDeposit(req){
+		try{
+			if(!empty(req) && !empty(req.body)){
+				const post = BaseService.sanitizeRequestData(req.body);
+				
+				if(!empty(post)){
+					let errors = {}, response = {}, data = {};
+
+					data['method'] = post['method'];
+					data['amount'] = post['amount'];
+					data['id'] = uniqid();
+					data['type'] = "Deposit";
+					data['status'] = "Pending";
+					data['uid'] = req.session.user.uid;
+
+					const deps = await this.db.collection('transactions').doc(data['id']).set(data);
+					if(!empty(deps._writeTime)){
+						let redirect_url;
+						if(data['method'] === "peer"){
+							redirect_url = `/secure/p2ps?token=${data['id']}`;
+						}
+						else if(data['method'] === "crypto"){
+							redirect_url = `/secure/crypto?token=${data['id']}`;
+						}
+
+						response['redirect_url'] = redirect_url;
+						response['msg'] = "Your deposit has been submited. Kindly complete your deposit from the next page.";
+						//
+						return BaseService.sendSuccessResponse(response);
+					}
+					else{
+						return BaseService.sendFailedResponse('Oops!! We had problem submiting your deposit. Try again');
+					}
+				}
+				else{
+					return BaseService.sendFailedResponse('Oops! Something went wrong, please try again');
+				}
+			}
+			else{
+					return BaseService.sendFailedResponse('Error! Invalid Request');
+				}
+		}
+		catch (e) {
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
+
+	async get_p2ps(){
+		try{
+			let errors = {};
+			const p2ps = await this.db.collection("p2ps").get();
+			if(p2ps._size > 0){
+				return BaseService.sendSuccessResponse(p2ps);
+			}
+			else{
+				return BaseService.sendFailedResponse("Unfortunately no record was found")
+			}
+		}
+		catch (e) {
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
+
+	async confirmDeposit(token) {
+        try{
+            const doc_id = (!empty(token)) ? token : null;
+			const found = await this.db.collection('transactions').doc(doc_id).get();
+            if(!found.exists){
+                return SecureService.sendFailedResponse({error: 'user_not_found'});
+            }
+            return SecureService.sendSuccessResponse(found.data());
+		}
+		catch(e){
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+    }
+
 }
 
 module.exports = SecureService;
