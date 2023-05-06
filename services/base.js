@@ -1,5 +1,5 @@
 const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
-const { empty, filter_var, isObject, humanize} = require("../lib/utils");
+const { empty, filter_var, isObject, preg_match, humanize} = require("../lib/utils");
 const _ = require("lodash");
 
 class BaseService {

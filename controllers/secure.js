@@ -40,15 +40,116 @@ class DashboardController extends BaseController
     }
 
     async depositAction(req, res){
-        let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
-        let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
-        res.render('secure/deposit', this.setTemplateParameters(req, {firstname, lastname,}));
+        try{
+            if(req.method === "POST"){
+                const {data, success} = await secureService.processDeposit(req);
+                if(!success){
+                    return DashboardController.sendFailResponse(res, data);
+                }
+                return DashboardController.sendSuccessResponse(res, data);
+            }
+
+            let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
+            let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
+            res.render('secure/deposit', this.setTemplateParameters(req, {firstname, lastname,}));
+        }
+        catch (e) {
+            console.log(e.message);
+            return DashboardController.sendFailResponse(res, {errors: 'Invalid Server Request'});
+        }
     }
 
     async deposit_typeAction(req, res){
-        let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
-        let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
-        res.render('secure/deposit_type', this.setTemplateParameters(req, {firstname, lastname,}));
+        try{
+            if(req.method === "POST"){
+                //
+                 const {data, success} = await secureService.submitDeposit(req);
+                if(!success){
+                    return DashboardController.sendFailResponse(res, data);
+                }
+                return DashboardController.sendSuccessResponse(res, data);
+            }
+            let amount;
+            if(empty(req.query) || empty(req.query.amount)){
+                return res.redirect('/secure/deposit');
+            }
+            else{
+                amount = req.query.amount;
+            }
+            let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
+            let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
+            res.render('secure/deposit_type', this.setTemplateParameters(req, {firstname, lastname, amount}));
+        }
+        catch (e) {
+            console.log(e.message);
+            return DashboardController.sendFailResponse(res, {errors: 'Invalid Server Request'});
+        }
+    }
+
+    async p2pAction(req, res){
+        try{
+            if(!(empty(req.query) && empty(req.query.token))){
+                const token = req.query.token;
+                const {success} = await secureService.confirmDeposit(token);
+                if(!success){
+                    return res.redirect('/secure/deposit_type');
+                }
+            }
+            else{
+                return res.redirect('/secure/deposit_type');
+            }
+
+            const {data, success} = await secureService.get_p2ps();
+            if(!success){
+                return res.redirect('/secure/deposit_type');
+            }
+           
+            let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
+            let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
+            res.render('secure/p2ps', this.setTemplateParameters(req, 
+                {
+                    firstname, 
+                    lastname,
+                    peers: data
+                }));
+        }
+        catch (e) {
+            console.log(e.message);
+            return DashboardController.sendFailResponse(res, {errors: 'Invalid Server Request'});
+        }
+    }
+
+    async cryptoAction(req, res){
+        try{
+            if(!(empty(req.query) && empty(req.query.token))){
+                const token = req.query.token;
+                const {success} = await secureService.confirmDeposit(token);
+                if(!success){
+                    return res.redirect('/secure/deposit_type');
+                }
+            }
+            else{
+                return res.redirect('/secure/deposit_type');
+            }
+
+            const {data, success} = await secureService.get_p2ps();
+            if(!success){
+                return res.redirect('/secure/deposit_type');
+            }
+           
+            let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
+            let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
+            res.render('secure/crypto', this.setTemplateParameters(req, 
+                {
+                    firstname, 
+                    lastname,
+                    peers: data
+                }));
+        }
+        catch (e) {
+            console.log(e.message);
+            return DashboardController.sendFailResponse(res, {errors: 'Invalid Server Request'});
+        }
     }
 
     async withdrawalAction(req, res){
