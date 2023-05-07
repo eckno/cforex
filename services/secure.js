@@ -72,6 +72,19 @@ class SecureService extends BaseService {
 
 					const deps = await this.db.collection('transactions').doc(data['id']).set(data);
 					if(!empty(deps._writeTime)){
+
+						let stat = {};
+						const date = new Date();
+						stat['type'] = 'Deposit';
+						stat['amount'] = post['amount'];
+						stat['id'] = data['id'];
+						stat['status'] = data['status'];
+						stat['_id'] = uniqid();
+						stat['uid'] = data['uid'];
+						stat['date'] = `${date.getDate()} / ${date.getMonth()} / ${date.getFullYear()}`;
+
+						this.db.collection('history').doc(stat['_id']).set(stat);
+
 						let redirect_url;
 						if(data['method'] === "peer"){
 							redirect_url = `/secure/p2ps?token=${data['id']}`;
@@ -109,6 +122,56 @@ class SecureService extends BaseService {
 			const p2ps = await this.db.collection("p2ps").get();
 			if(p2ps._size > 0){
 				return BaseService.sendSuccessResponse(p2ps);
+			}
+			else{
+				return BaseService.sendFailedResponse("Unfortunately no record was found")
+			}
+		}
+		catch (e) {
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
+
+	async get_crypto(){
+		try{
+			let errors = {};
+			const wallets = await this.db.collection("wallets").get();
+			if(wallets._size > 0){
+				return BaseService.sendSuccessResponse(wallets);
+			}
+			else{
+				return BaseService.sendFailedResponse("Unfortunately no record was found")
+			}
+		}
+		catch (e) {
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
+
+	async get_traders(){
+		try{
+			const traders = await this.db.collection("traders").get();
+			if(traders._size > 0){
+				return BaseService.sendSuccessResponse(traders);
+			}
+			else{
+				return BaseService.sendFailedResponse("Unfortunately no record was found")
+			}
+		}
+		catch (e) {
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
+
+	async get_histories(req){
+		try{
+			let uid = req.session.user.uid;
+			const histories = await this.db.collection("history").where("uid", "==", uid).get();
+			if(!histories.empty){
+				return BaseService.sendSuccessResponse(histories);
 			}
 			else{
 				return BaseService.sendFailedResponse("Unfortunately no record was found")

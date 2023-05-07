@@ -18,12 +18,26 @@ class DashboardController extends BaseController
             if(req.method === "POST"){
                 //
             }else{
-                let user = {};
+                let user = {}, histories = null;
+
                 let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
                 let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
+
                 const {data, success} = await secureService.fetchUserData(req);
                 if (success) {user = data;}
-                res.render('secure/index',  this.setTemplateParameters(req, {user, firstname, lastname,}));
+
+                if(!empty(user)){
+                    const {data, success} = await secureService.get_histories(req);
+                    if (success) histories = data ;
+                }
+                res.render('secure/index',  this.setTemplateParameters(req, 
+                        {
+                         user, 
+                         firstname, 
+                         lastname,
+                         histories
+                        }
+                    ));
             }
         }
         catch(e){
@@ -51,7 +65,43 @@ class DashboardController extends BaseController
 
             let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
             let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
-            res.render('secure/deposit', this.setTemplateParameters(req, {firstname, lastname,}));
+            res.render('secure/deposit', this.setTemplateParameters(req, 
+                {
+                 firstname, 
+                 lastname,
+                }
+                ));
+        }
+        catch (e) {
+            console.log(e.message);
+            return DashboardController.sendFailResponse(res, {errors: 'Invalid Server Request'});
+        }
+    }
+
+    async tradeAction(req, res){
+        try{
+            if(req.method === "POST"){
+                // const {data, success} = await secureService.processDeposit(req);
+                // if(!success){
+                //     return DashboardController.sendFailResponse(res, data);
+                // }
+                // return DashboardController.sendSuccessResponse(res, data);
+            }
+
+            const {data, success} = await secureService.get_traders();
+            if(!success){
+                return res.redirect('/secure');
+            }
+
+            let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
+            let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
+            res.render('secure/trader', this.setTemplateParameters(req, 
+                {
+                 firstname, 
+                 lastname,
+                 traders: data
+                }
+                ));
         }
         catch (e) {
             console.log(e.message);
@@ -132,7 +182,7 @@ class DashboardController extends BaseController
                 return res.redirect('/secure/deposit_type');
             }
 
-            const {data, success} = await secureService.get_p2ps();
+            const {data, success} = await secureService.get_crypto();
             if(!success){
                 return res.redirect('/secure/deposit_type');
             }
