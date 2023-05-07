@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const DashboardController = require("../../controllers/secure");
 const hasUser = require('../../middleware/has_user');
-const {ROUTE_INDEX, ROUTE_PROFILE, ROUTE_PROFILE_EDIT, ROUTE_DEPOSIT, ROUTE_WITHDRAWAL, ROUTE_TRADE, ROUTE_DEPOSIT_TYPE, ROUTE_P2PS, ROUTE_CRYPTO} = require('../../lib/secure-routes');
+const {ROUTE_INDEX, ROUTE_PROFILE, ROUTE_PROFILE_EDIT, ROUTE_DEPOSIT, ROUTE_WITHDRAWAL, ROUTE_TRADER, ROUTE_DEPOSIT_TYPE, ROUTE_P2PS, ROUTE_CRYPTO} = require('../../lib/secure-routes');
 const dashboardController = new DashboardController();
 
 router.get(ROUTE_INDEX, hasUser, async (req, res) => {
@@ -40,7 +40,7 @@ router.get(ROUTE_WITHDRAWAL, hasUser, async (req, res) => {
     return dashboardController.withdrawalAction(req, res);
 });
 
-router.get(ROUTE_TRADE, hasUser, async (req, res) => {
+router.get(ROUTE_TRADER, hasUser, async (req, res) => {
     return dashboardController.tradeAction(req, res);
 });
 

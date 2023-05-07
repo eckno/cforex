@@ -8,60 +8,49 @@
             <div class="page-content">
                 <div class="container-fluid">
 
-                    <!-- start page title -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">Deposit</h4>
-
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">crypto</a></li>
-                                        <li class="breadcrumb-item active">List</li>
-                                    </ol>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end page title -->
-
-
                     <div class="row justify-content-center mt-5">
                         <div class="col-xl-4">
                             <div class="text-center mb-4 pb-2">
-                                <h4 class="fw-semibold fs-22">CRYPTO DEPOSIT WALLETS</h4>
+                                <h4 class="fw-semibold fs-22">Select Your Trader</h4>
+                                <p class="text-muted mb-4 fs-15">All Current Online Traders At The Moment</p>
                             </div>
                         </div>
                         <!--end col-->
                     </div>
                     <!--end row-->
                     <div class="row">
-                        <% peers.forEach(p2p => { %>
+                        <% traders.forEach(trader => { %>
                         <div class="col-xxl-4 col-lg-6">
-                            <div class="card bg-info bg-opacity-10 border-0">
+                            <div class="card <%= trader.data().available === 'yes' ? 'bg-info' : 'bg-danger ribbon-box ribbon-fill right' %> bg-opacity-10 border-0">
+                                <div class="<%= trader.data().available==='yes' ? '' : 'ribbon ribbon-danger shadow-none' %>"><%= trader.data().available==='yes' ? '' : 'BREAK' %></div>
                                 <div class="card-body p-4 m-2">
                                     <div class="row mb-3">
                                         <div class="col-lg-6">
                                             <div>
-                                                <h5 class="mb-1"><%= p2p.data().longname %> (<%= p2p.data().shortname %>)</h5>
+                                                <h5 class="mb-1"><%= trader.data().fullname %></h5>
+                                                <p class="text-muted">Professional Trader</p>
                                             </div>
+
+                                            
                                         </div>
                                         <div class="col-lg-6">
                                             <ul class="list-unstyled vstack gap-3 mb-0">
-                                                <li>Network: <span class="text-info fw-semibold"><%= p2p.data().network %></span></li>
+                                                <li>Success Rate: <span class="<%= trader.data().available==='yes' ? 'text-info' : 'text-danger' %> fw-semibold"><%= trader.data().success_rate %>%</span></li>
+                                                <li>Trade Hour: <span class="<%= trader.data().available==='yes' ? 'text-info' : 'text-danger' %> fw-semibold"><%= trader.data().trade_hour %>hrs</span></li>
+                                                <li>Trade Period: <span class="<%= trader.data().available==='yes' ? 'text-info' : 'text-danger' %> fw-semibold"><%= trader.data().trade_days %>days</span></li>
+                                                <li>Available ?: <span style="text-transform: uppercase;" class="<%= trader.data().available==='yes' ? 'text-info' : 'text-danger' %> fw-semibold"><%= trader.data().available %></span></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div>
-                                        <input type="text" class="form-control mb-3" id="<%= p2p.data()._id %>" value="<%= p2p.data().address %>" readonly>
-                                        <a href="javascript:void(0)" onclick="myFunction('<%= p2p.data()._id %>')" class="btn btn-info w-100">Copy Wallet Address</a>
+                                        <a href="javascript:void(0)" class="btn <%= trader.data().available==='yes' ? 'btn-info' : 'btn-danger' %> w-100">Start Trade</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <% }); %>
                         <!--end col-->
+                        <% }) %>
+
                     </div>
                     <!--end row-->
                 </div>
@@ -88,15 +77,3 @@
 
 
         <%- include('./inc/footer') %>
-        <script>
-            function myFunction(id) {
-                    var wallet = document.getElementById(id);
-                    wallet.select();
-                    wallet.setSelectionRange(0, 99999); // For mobile devices
-
-                    navigator.clipboard.writeText(wallet.value);
-
-                    // Alert the copied text
-                    alert("Copied: " + wallet.value);
-                }
-        </script>
