@@ -33,6 +33,12 @@ class IndexService extends BaseService {
 
 				post['unique_id'] = uniqid();
 				post['ipaddress'] = get_ip_address(req);
+				post['deposit'] = 0;
+				post['balance'] = 0;
+				post['pending_pay'] = 0;
+				post['bonus'] = 0;
+				post['total_earnings'] = 0;
+				
 				const create_user = await this.db.collection('users').doc(post['unique_id']).set(post);
 				//console.log("user: ", );
 				if(!empty(create_user._writeTime)){

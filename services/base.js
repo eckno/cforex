@@ -186,6 +186,30 @@ class BaseService {
 		return errors;
 	}
 
+static getNumberOfDays(start, end) {
+    const date1 = new Date(start);
+    const date2 = new Date(end);
+
+    // One day in milliseconds
+    const oneDay = 1000 * 60 * 60 * 24;
+
+    // Calculating the time difference between two dates
+    const diffInTime = date2.getTime() - date1.getTime();
+
+    // Calculating the no. of days between two dates
+    const diffInDays = Math.round(diffInTime / oneDay);
+
+    return diffInDays;
+}
+
+static getTradeEndDate(start_date, period){
+	var someDate = new Date(start_date);
+	someDate.setDate(someDate.getDate() + period); //number  of days to add, e.x. 15 days
+	var dateFormated = someDate.toISOString().substr(0,10);
+
+	return dateFormated
+}
+
 	static setUserSession(req, session_data) {
 		if (req && req.session && session_data) {
 			req.session.user = session_data;

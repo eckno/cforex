@@ -116,6 +116,82 @@ class SecureService extends BaseService {
 		}
 	}
 
+	async submitTrade(req){
+		try{
+			if(!empty(req) && !empty(req.body)){
+				const post = BaseService.sanitizeRequestData(req.body);
+				
+				if(!empty(post)){
+					let errors = {}, response = {}, data = {};
+
+					const doc_id = (!empty(req) && !empty(req.session) && !empty(req.session.user.uid)) ? req.session.user.uid : null;
+					const user = await this.db.collection('users').doc(doc_id).get();
+					if(user.exists){
+						const existing_trade = await this.db.collection('trades').where("uid", "==", doc_id).where('status', '==', 'running').get();
+						if(empty(user.data().deposit) || user.data().deposit < 999){
+							errors['amount'] = 'You have low investment balance. Kindly topup your account before investing.';
+						}else if(!existing_trade.empty){
+							errors['trade'] = 'You already have a running trade.';
+						}else{
+							const date = new Date();
+							data = {
+								trader_id: post['trader_id'],
+								trade_percent: post['trade_percent'],
+								trade_hour: post['trade_hour'],
+								trade_period: post['trader_period'],
+								trade_amount: user.data().deposit,
+								trade_earning: 0,
+								paid: 0,
+								started_on: `${date.getFullYear()} - ${date.getMonth()} - ${date.getDate()}`,
+								completing_on: BaseService.getTradeEndDate(`${date.getDate()} / ${date.getMonth()} / ${date.getFullYear()}`, post['trader_period']),
+								yesterday: `${date.getFullYear()} - ${date.getMonth()} - ${date.getDate()}`,
+								completed: false,
+								uid: user.data().unique_id,
+								status: "running",
+								_id: uniqid(),
+							};
+
+							data['days_remaining'] = data['trade_period'];
+
+							const save_trade = await this.db.collection('trades').doc(data['_id']).set(data);
+							
+							if(!empty(save_trade._writeTime)){
+
+								this.db.collection('users').doc(data['uid']).update({deposit: 0});
+
+								let stat = {};
+								const date = new Date();
+								stat['type'] = 'Trade';
+								stat['amount'] = data['trade_amount'];
+								stat['id'] = data['_id'];
+								stat['status'] = data['status'];
+								stat['_id'] = uniqid();
+								stat['uid'] = data['uid'];
+								stat['date'] = `${date.getDate()} / ${date.getMonth()} / ${date.getFullYear()}`;
+
+								this.db.collection('history').doc(stat['_id']).set(stat);
+
+					 			response['msg'] = "You have successfully started a new trade. Congratulations !";
+					 			response['redirect_url'] = '/secure';
+					 			return BaseService.sendSuccessResponse(response);
+							}
+						}
+           			 }else{
+						errors['user'] = 'Something went wrong, please try again later !';
+					}
+
+					if(!empty(errors)){
+						return BaseService.sendFailedResponse(errors);
+					 }
+				}
+			}
+		}
+		catch (e){
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
+
 	async get_p2ps(){
 		try{
 			let errors = {};
@@ -172,6 +248,23 @@ class SecureService extends BaseService {
 			const histories = await this.db.collection("history").where("uid", "==", uid).get();
 			if(!histories.empty){
 				return BaseService.sendSuccessResponse(histories);
+			}
+			else{
+				return BaseService.sendFailedResponse("Unfortunately no record was found")
+			}
+		}
+		catch (e) {
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
+
+	async getTrade(req){
+		try{
+			let uid = req.session.user.uid;
+			const trade = await this.db.collection('trades').where("uid", "==", uid).where('status', '==', 'running').get();
+			if(!trade.empty){
+				return BaseService.sendSuccessResponse(trade);
 			}
 			else{
 				return BaseService.sendFailedResponse("Unfortunately no record was found")

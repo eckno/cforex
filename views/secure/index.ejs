@@ -99,36 +99,38 @@
                                                 </div><!-- end card header -->
                                             
                                                 <div class="card-header p-0 border-0 bg-soft-light">
+                                                    <% if(typeof trade !=='undefined' ){ trade.forEach(tr => { %>
                                                     <div class="row g-0 text-center">
                                                         <div class="col-6 col-sm-3">
                                                             <div class="p-3 border border-dashed border-start-0">
-                                                                <h5 class="mb-1"><span class="counter-value" data-target="0">0</span></h5>
-                                                                <p class="text-muted mb-0">Trades</p>
+                                                                <h5 class="mb-1"><span class="text-success"><%= tr.data().status == 'running' ? 'On Going' : ''; %></span></h5>
+                                                                <p class="text-muted mb-0">Trade</p>
                                                             </div>
                                                         </div>
                                                         <!--end col-->
                                                         <div class="col-6 col-sm-3">
                                                             <div class="p-3 border border-dashed border-start-0">
-                                                                <h5 class="mb-1">₦<span class="counter-value" data-target="0">0</span></h5>
+                                                                <h5 class="mb-1">₦<span class="counter-value" data-target="<%= tr.data().trade_earning %>"><%= tr.data().trade_earning %></span></h5>
                                                                 <p class="text-muted mb-0">Earnings</p>
                                                             </div>
                                                         </div>
                                                         <!--end col-->
                                                         <div class="col-6 col-sm-3">
                                                             <div class="p-3 border border-dashed border-start-0">
-                                                                <h5 class="mb-1">₦<span class="counter-value" data-target="0">0</span></h5>
+                                                                <h5 class="mb-1">₦<span class="counter-value" data-target="<%= tr.data().paid %>"><%= tr.data().paid %></span></h5>
                                                                 <p class="text-muted mb-0">Paid</p>
                                                             </div>
                                                         </div>
                                                         <!--end col-->
                                                         <div class="col-6 col-sm-3">
                                                             <div class="p-3 border border-dashed border-start-0 border-end-0">
-                                                                <h5 class="mb-1 text-success"><span class="counter-value" data-target="0">0</span>%</h5>
+                                                                <h5 class="mb-1 text-success"><span class="counter-value" data-target="<%= tr.data().trade_percent %>"><%= tr.data().trade_percent %></span>%</h5>
                                                                 <p class="text-muted mb-0">Trading Ratio</p>
                                                             </div>
                                                         </div>
                                                         <!--end col-->
                                                     </div>
+                                                    <% }) } %>
                                                 </div><!-- end card header -->
                                             
                                                 <div class="card-body p-0 pb-2">
@@ -200,6 +202,9 @@
                                                                         <% } %>
                                                                         <% if(history.data().status=='success' ){ %>
                                                                             <span class="badge badge-soft-success">Deposited</span>
+                                                                        <% } %>
+                                                                        <% if(history.data().status=='running' ){ %>
+                                                                            <span class="badge badge-soft-success">Started new trade</span>
                                                                         <% } %>
                                                                     </td>
                                                                                                                   
