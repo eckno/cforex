@@ -43,7 +43,14 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="javascript:void(0)" class="btn <%= trader.data().available==='yes' ? 'btn-info' : 'btn-danger' %> w-100">Start Trade</a>
+                                        <form action="/secure/trade" method="POST" id="<%= trader.data()._id %>">
+                                            <input type="hidden" name="trader_id" value="<%= trader.data()._id %>">
+                                            <input type="hidden" name="trade_percent" value="<%= trader.data().trade_percent %>">
+                                            <input type="hidden" name="trade_hour" value="<%= trader.data().trade_hour %>">
+                                            <input type="hidden" name="trader_period" value="<%= trader.data().trade_days %>">
+
+                                            <button type="button" onclick="start_new_trade('<%= trader.data()._id %>')" class="btn <%= trader.data().available==='yes' ? 'btn-info' : 'btn-danger' %> w-100" <%= trader.data().available==='yes' ? '' : 'disabled' %>>Start Trade</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

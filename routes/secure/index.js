@@ -43,5 +43,8 @@ router.get(ROUTE_WITHDRAWAL, hasUser, async (req, res) => {
 router.get(ROUTE_TRADER, hasUser, async (req, res) => {
     return dashboardController.tradeAction(req, res);
 });
+router.post(ROUTE_TRADER, hasUser, async (req, res) => {
+    return dashboardController.tradeAction(req, res);
+});
 
 module.exports = router;

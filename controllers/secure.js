@@ -18,7 +18,7 @@ class DashboardController extends BaseController
             if(req.method === "POST"){
                 //
             }else{
-                let user = {}, histories = null;
+                let user = {}, histories = null, trade = null;
 
                 let firstname = !empty(req.session.user.firstname) ? req.session.user.firstname : "Null"; 
                 let lastname = !empty(req.session.user.lastname) ? req.session.user.lastname : "Null";
@@ -30,12 +30,20 @@ class DashboardController extends BaseController
                     const {data, success} = await secureService.get_histories(req);
                     if (success) histories = data ;
                 }
+                if(!empty(user) && !empty(histories)){
+                    const {data, success} = await secureService.getTrade(req);
+                    if (success) trade = data ;
+                }
+                else{
+                    return res.redirect('/account');
+                }
                 res.render('secure/index',  this.setTemplateParameters(req, 
                         {
                          user, 
                          firstname, 
                          lastname,
-                         histories
+                         histories,
+                         trade
                         }
                     ));
             }
@@ -81,11 +89,11 @@ class DashboardController extends BaseController
     async tradeAction(req, res){
         try{
             if(req.method === "POST"){
-                // const {data, success} = await secureService.processDeposit(req);
-                // if(!success){
-                //     return DashboardController.sendFailResponse(res, data);
-                // }
-                // return DashboardController.sendSuccessResponse(res, data);
+                const {data, success} = await secureService.submitTrade(req);
+                if(!success){
+                    return DashboardController.sendFailResponse(res, data);
+                }
+                return DashboardController.sendSuccessResponse(res, data);
             }
 
             const {data, success} = await secureService.get_traders();
