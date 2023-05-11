@@ -16,7 +16,11 @@ class DashboardController extends BaseController
                     return res.redirect('/account');
                 }
             if(req.method === "POST"){
-                //
+                const {data, success} = await secureService.accountUpdate(req);
+                if(!success){
+                    return DashboardController.sendFailResponse(res, data);
+                }
+                return DashboardController.sendSuccessResponse(res, data);
             }else{
                 let user = {}, histories = null, trade = null;
 

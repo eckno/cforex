@@ -25,6 +25,58 @@ class SecureService extends BaseService {
 		}
     }
 
+	async accountUpdate(req){
+		try{
+			if(!empty(req) && !empty(req.body)){
+				const post = BaseService.sanitizeRequestData(req.body);
+				
+				if(!empty(post)){
+					let errors = {}, response = {};
+					const required_fields = ['old_password', 'new_password', 'phone'];
+					const number_fields = ['phone'];
+					errors = this.validateFields(post, required_fields, [], [],number_fields, [], []);
+					
+					if(!empty(errors)){
+						return BaseService.sendFailedResponse(errors);
+					}
+
+					const doc_id = (!empty(req) && !empty(req.session) && !empty(req.session.user.uid)) ? req.session.user.uid : null;
+					const user = await this.db.collection('users').doc(doc_id).get();
+            		if(!user.exists){
+            		    return SecureService.sendFailedResponse({error: 'user_not_found'});
+            		}
+					if(user.data().password !== post['old_password']){
+						errors['password'] = "Incorrect old password. (if you have forgotten your password, please logout and use the forgot password to retrieve your account password.)";
+					}
+
+					if(!empty(errors)){
+						return BaseService.sendFailedResponse(errors);
+					}
+					const update_data = {
+						phone: post['phone'],
+						password: post['new_password']
+					};
+
+					const update = await this.db.collection('users').doc(doc_id).update(update_data);
+					if(update){
+						const redirect_url = `/secure`;
+						response['redirect_url'] = redirect_url;
+						response['msg'] = "Your profile has been successfully updated";
+						//
+						return BaseService.sendSuccessResponse(response);
+					}
+				}
+				else{
+					return BaseService.sendFailedResponse('Error! Invalid Request');
+				}
+			}
+		}
+		catch(e){
+			console.log(e.message);
+			return SecureService.sendFailedResponse('An error occurred. Please check your request and try again');
+		}
+	}
+
 	async processDeposit(req){
 		try{
 			if(!empty(req) && !empty(req.body)){

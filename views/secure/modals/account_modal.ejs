@@ -1,0 +1,33 @@
+<!-- staticBackdrop Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="mt-4 text-center">
+                    <h4 class="mb-3">Update Account Settings</h4>
+                    <p class="text-muted mb-4"> Kindly fill the form below to update your account and change your password.</p>
+                </div>
+                <form action="./secure" id="account-form" method="POST">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="form-label">Old Password:</label>
+                        <input type="password" class="form-control" name="old_password" id="opassword">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">New Password:</label>
+                        <input type="password" class="form-control" name="new_password" id="npassword">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Phone:</label>
+                        <input type="text" class="form-control" value="<%= user.phone %>" name="phone" id="phone" <%= user.phone ? 'readonly' : '' %>>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>            </div>
+        </div>
+    </div>
+</div>
