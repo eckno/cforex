@@ -17,6 +17,9 @@ class IndexController extends BaseController{
 
     async loginAction(req, res){
         try{
+            if(!empty(req.session) && !empty(req.session.user)){
+                req.session.user = null; 
+            }
             if(req.method === "POST"){
                 const {data, success} = await indexService.loginService(req);
                     if(empty(success) || success === false){
@@ -36,6 +39,9 @@ class IndexController extends BaseController{
 
     async registerAction(req, res){
             try{
+                if(!empty(req.session) && !empty(req.session.user)){
+                    req.session.user = null; 
+                }
                 if(req.method === "POST"){
                     const {data, success} = await indexService.registrationService(req);
                    

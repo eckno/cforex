@@ -9,6 +9,10 @@ router.get(ROUTE_INDEX, hasUser, async (req, res) => {
     return dashboardController.indexAction(req, res);
 });
 
+router.post(ROUTE_INDEX, hasUser, async (req, res) => {
+    return dashboardController.indexAction(req, res);
+});
+
 router.get(ROUTE_PROFILE, hasUser, async (req, res) => {
     return dashboardController.profileAction(req, res);
 });
