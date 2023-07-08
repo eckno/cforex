@@ -38,9 +38,7 @@ class DashboardController extends BaseController
                     const {data, success} = await secureService.getTrade(req);
                     if (success) trade = data ;
                 }
-                else{
-                    return res.redirect('/account');
-                }
+                
                 res.render('secure/index',  this.setTemplateParameters(req, 
                         {
                          user, 

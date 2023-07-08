@@ -1,4 +1,4 @@
-const { empty, isString } = require('../lib/utils');
+const { empty } = require('../lib/utils');
 
 const hasUser = async (req, res, next) => {
 
